@@ -4,13 +4,25 @@ public class User {
     private Integer idUser;
     private String name;
     private String userName;
+    private String email;
     private String password;
 
-    public User(Integer idUser, String name, String userName, String password) {
+
+
+
+    public User(Integer idUser, String name, String userName,String email, String password ) {
         this.idUser = idUser;
         this.name = name;
         this.userName = userName;
+        this.email = email;
         this.password = password;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getIdUser() {
