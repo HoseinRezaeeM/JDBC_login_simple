@@ -20,7 +20,7 @@ public class JdbcConnetion {
     public JdbcConnetion() throws SQLException {
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 }
