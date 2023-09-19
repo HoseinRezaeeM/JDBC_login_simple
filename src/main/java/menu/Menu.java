@@ -83,9 +83,11 @@ public class Menu {
                     case 1:
                         shareholderMenu();
                     case 2:
+
                     case 3:
                     case 4:
                     case 5:
+                        System.out.println("----Good Bye---");
                     default:
                         System.out.println("-----Error404----");
 
@@ -98,7 +100,7 @@ public class Menu {
         System.out.println("---Shareholder---");
         System.out.println("1. Add Shareholer Information : ");
         System.out.println("2. Edit Shareholder Information :");
-        System.out.println("2. Delete Shareholder Information :");
+        System.out.println("3. Delete Shareholder Information :");
         System.out.println("Enter your Select :");
         int select = sc.nextInt();
         sc.nextLine();
@@ -106,7 +108,11 @@ public class Menu {
             case 1:
                 registerShareholder();
             case 2:
-
+                updateShareholder();
+            case 3:
+                deleteShareholder();
+            default:
+                System.out.println("--Error--");
         }
 
     }
@@ -137,6 +143,17 @@ public class Menu {
         Shareholder shareholder = new Shareholder(null, name, phoneNumber, nationalCode);
         shareholderService.register(shareholder);
 
+    }
+    public void updateShareholder() throws SQLException {
+        System.out.println("Enter your ID Shareholder :");
+        int idShareholder =sc.nextInt();
+        shareholderService.update(idShareholder);
+
+    }
+    public void deleteShareholder() throws SQLException{
+        System.out.println("Enter your IdShareholder :");
+        int idShareholder=sc.nextInt();
+        shareholderService.delete(idShareholder);
     }
 
 
