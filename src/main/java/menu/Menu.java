@@ -22,13 +22,13 @@ public class Menu {
         sc.nextLine();
         switch (select) {
             case 1 -> System.out.println("");
-            case 2 -> register();
+            case 2 -> registerUser();
             case 3 -> System.out.println("exit");
             default -> System.out.println("---Eror404---");
         }
     }
 
-    public void register() throws SQLException {
+    public void registerUser() throws SQLException {
         System.out.println("Enter your name: ");
         String name = sc.next();
         System.out.println("Enter your UserName: ");
@@ -77,7 +77,7 @@ public class Menu {
                 System.out.println("Enter your select :");
                 int select = sc.nextInt();
                 switch (select) {
-                    case 1:
+                    case 1:shareholderMenu();
                     case 2:
                     case 3:
                     case 4:
@@ -89,6 +89,24 @@ public class Menu {
             }
         }
     }
+    public void shareholderMenu()throws SQLException{
+        System.out.println("---Shareholder---");
+        System.out.println("1. Add Shareholer Information : ");
+        System.out.println("2. Edit Shareholder Information :");
+        System.out.println("2. Delete Shareholder Information :");
+        System.out.println("Enter your Select :");
+        int select =sc.nextInt();
+        switch (select){
+            case 1:registerShareholder();
+            case 2:
+
+        }
+
+    }
+    public void registerShareholder()throws SQLException{
+
+    }
+
 
 
 
