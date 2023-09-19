@@ -17,4 +17,8 @@ public class Validation {
         Pattern pattern =Pattern.compile("^[0-9]{8}$");
         return phoneNumber.matches(pattern.pattern());
     }
+    public static boolean validationNationalCode(String nationalCode){
+        Pattern pattern =Pattern.compile("^[0-9]{10}$");
+        return nationalCode.matches(pattern.pattern());
+    }
 }
