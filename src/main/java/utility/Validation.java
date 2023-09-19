@@ -11,6 +11,10 @@ public class Validation {
     public static boolean validationEmail(String email){
         Pattern pattern=Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}");
         return email.matches(pattern.pattern());
+    }
 
+    public static boolean validatePhoneNumber(String phoneNumber){
+        Pattern pattern =Pattern.compile("^[0-9]{8}$");
+        return phoneNumber.matches(pattern.pattern());
     }
 }
