@@ -23,6 +23,19 @@ public class ShareholderService {
 
     }
     public void update(int idShareholder) throws SQLException{
+        System.out.println("Enter new name :");
+        String name= scanner.next();
+        System.out.println("Enter new phoneNumber :");
+        String phoneNumber=scanner.next();
+        System.out.println("Enter new nationalCode : ");
+        String nationalCode =scanner.next();
+        int result =shareholderRepository.updateInfoShareholder(name,phoneNumber,nationalCode,idShareholder);
+        if(result!= 0)
+            System.out.println("successfully edited to database");
+        else {
+            System.out.println("Eror404");
+        }
+
 
     }
 }
