@@ -1,6 +1,8 @@
 package menu;
 
+import models.Shareholder;
 import models.User;
+import service.ShareholderService;
 import service.UserService;
 import utility.ApplicationContex;
 import utility.Validation;
@@ -11,6 +13,7 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner sc = new Scanner(System.in);
     private final UserService userService = ApplicationContex.getUserService();
+    private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
 
     public void firstMenu() throws SQLException {
         System.out.println("\n---------Welcome to MyApplication---------\n");
@@ -77,7 +80,8 @@ public class Menu {
                 System.out.println("Enter your select :");
                 int select = sc.nextInt();
                 switch (select) {
-                    case 1:shareholderMenu();
+                    case 1:
+                        shareholderMenu();
                     case 2:
                     case 3:
                     case 4:
@@ -89,25 +93,51 @@ public class Menu {
             }
         }
     }
-    public void shareholderMenu()throws SQLException{
+
+    public void shareholderMenu() throws SQLException {
         System.out.println("---Shareholder---");
         System.out.println("1. Add Shareholer Information : ");
         System.out.println("2. Edit Shareholder Information :");
         System.out.println("2. Delete Shareholder Information :");
         System.out.println("Enter your Select :");
-        int select =sc.nextInt();
-        switch (select){
-            case 1:registerShareholder();
+        int select = sc.nextInt();
+        sc.nextLine();
+        switch (select) {
+            case 1:
+                registerShareholder();
             case 2:
 
         }
 
     }
-    public void registerShareholder()throws SQLException{
+
+    public void registerShareholder() throws SQLException {
+        System.out.println("Enter your name :");
+        String name = sc.next();
+        System.out.println("Enter your phoneNumber :");
+        String phoneNumber = null;
+        boolean isTrue = true;
+        while (isTrue) {
+            if (Validation.validatePhoneNumber(phoneNumber)) {
+                isTrue = false;
+            } else {
+                System.out.println("please enter a valid phoneNumber!!");
+            }
+        }
+        System.out.println("Enter your nationalCode :");
+        String nationalCode = null;
+        boolean isTrue1 = true;
+        while (isTrue1) {
+            if (Validation.validationNationalCode(nationalCode)) {
+                isTrue1 = false;
+            } else {
+                System.out.println("please enter a valid nationalCode!!");
+            }
+        }
+        Shareholder shareholder = new Shareholder(null, name, phoneNumber, nationalCode);
+        shareholderService.register(shareholder);
 
     }
-
-
 
 
 }
