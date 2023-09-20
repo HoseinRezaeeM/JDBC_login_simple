@@ -22,4 +22,23 @@ public class BrandRepository {
         int result =preparedStatement.executeUpdate();
         return result;
     }
+
+    public int update(String name,String website,String description,int idBrand) throws SQLException {
+        String sql="UPDATE brand SET name=?,website=?,description=? WHERE idbrand=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(sql);
+        preparedStatement.setString(1,name);
+        preparedStatement.setString(2,website);
+        preparedStatement.setString(3,description);
+        preparedStatement.setInt(4,idBrand);
+        int result =preparedStatement.executeUpdate();
+        return result;
+    }
+    public int delete(int idBrand)throws SQLException {
+        String sql = "DELETE FROM brand where idbrand=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(sql);
+        preparedStatement.setInt(1,idBrand);
+        int result =preparedStatement.executeUpdate();
+        return result;
+
+    }
 }
