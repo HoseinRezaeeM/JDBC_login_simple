@@ -1,9 +1,11 @@
 package menu;
 
 import models.Brand;
+import models.Category;
 import models.Shareholder;
 import models.User;
 import service.BrandService;
+import service.CategoryService;
 import service.ShareholderService;
 import service.UserService;
 import utility.ApplicationContex;
@@ -17,6 +19,7 @@ public class Menu {
     private final UserService userService = ApplicationContex.getUserService();
     private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
     private final BrandService brandService=ApplicationContex.getBrandService();
+    private final CategoryService categoryService=ApplicationContex.getCategoryService();
 
     public void firstMenu() throws SQLException {
         System.out.println("\n---------Welcome to MyApplication---------\n");
@@ -88,7 +91,7 @@ public class Menu {
                     case 2:
                         brandMenu();
                     case 3:
-
+                        CategoryMenu();
                     case 4:
 
                     case 5:
@@ -164,10 +167,11 @@ public class Menu {
     }
 
     public void brandMenu() throws SQLException {
-        System.out.println("---Brandr---");
+        System.out.println("---Brand---");
         System.out.println("1. Add Barnd Information : ");
-        System.out.println("2. Edit Brand Information :");
-        System.out.println("3. Delete Brand Information :");
+        System.out.println("2. Add Shareholder Brand :");
+        System.out.println("3. Edit Brand Information :");
+        System.out.println("4. Delete Brand Information :");
         System.out.println("Enter your Select :");
         int select = sc.nextInt();
         sc.nextLine();
@@ -175,8 +179,10 @@ public class Menu {
             case 1:
                registerBrand();
             case 2:
-                updateBrand();
+                addShareholderBrand();
             case 3:
+                updateBrand();
+            case 4:
                 deleteBrand();
             default:
                 System.out.println("--Error--");
@@ -205,6 +211,14 @@ public class Menu {
 
 
     }
+    public void addShareholderBrand() throws SQLException {
+        System.out.println("Enter ID Brand :");
+        int idBrand=sc.nextInt();
+        System.out.println("Enter ID Shareholder :");
+        int idShareholder=sc.nextInt();
+        brandService.shareholderBranch(idBrand,idShareholder);
+
+    }
     public void updateBrand() throws SQLException {
         System.out.println("Enter your ID Brand :");
         int idBrand =sc.nextInt();
@@ -215,6 +229,49 @@ public class Menu {
         System.out.println("Enter your ID Brand :");
         int idBrand=sc.nextInt();
         brandService.delete(idBrand);
+    }
+
+    public void CategoryMenu() throws SQLException {
+        System.out.println("---Category---");
+        System.out.println("1. Add Category Information : ");
+        System.out.println("2. Edit Category Information :");
+        System.out.println("3. Delete Category Information :");
+        System.out.println("Enter your Select :");
+        int select = sc.nextInt();
+        sc.nextLine();
+        switch (select) {
+            case 1:
+                registerCategory();
+            case 2:
+                updateCategory();
+            case 3:
+                deleteCategory();
+            default:
+                System.out.println("--Error--");
+        }
+
+    }
+
+    public void registerCategory() throws SQLException {
+        System.out.println("Enter your name :");
+        String name = sc.next();
+        System.out.println("Enter your descripton :");
+        String description=sc.next();
+        Category category=new Category(null,name,description);
+        categoryService.register(category);
+
+
+    }
+    public void updateCategory() throws SQLException {
+        System.out.println("Enter your ID Category :");
+        int idCategory =sc.nextInt();
+        categoryService.update(idCategory);
+
+    }
+    public void deleteCategory() throws SQLException{
+        System.out.println("Enter your ID Category :");
+        int idCategory=sc.nextInt();
+        categoryService.delete(idCategory);
     }
 
 
