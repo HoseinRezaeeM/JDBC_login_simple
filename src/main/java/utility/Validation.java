@@ -3,6 +3,8 @@ package utility;
 import java.util.regex.Pattern;
 
 public class Validation {
+
+
     public static boolean validationPassword(String password){
         Pattern pattern=Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
         return password.matches(pattern.pattern());
@@ -20,5 +22,9 @@ public class Validation {
     public static boolean validationNationalCode(String nationalCode){
         Pattern pattern =Pattern.compile("^[0-9]{10}$");
         return nationalCode.matches(pattern.pattern());
+    }
+    public static boolean validationWebsite(String website){
+        Pattern pattern=Pattern.compile("(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$/");
+        return website.matches(pattern.pattern());
     }
 }
