@@ -18,7 +18,7 @@ public class ApplicationContex {
     private final static CategoryRepository CATEGORY_REPOSITORY;
     private final static CategoryService CATEGORY_SERVICE;
     private final static ProductRepository PRODUCT_REPOSITORY;
-    private final static ProuductService PROUDUCT_SERVICE;
+    private final static ProductService PROUDUCT_SERVICE;
 
     static {
         CONNECTION =JdbcConnetion.getConnection();
@@ -31,7 +31,7 @@ public class ApplicationContex {
         CATEGORY_REPOSITORY=new CategoryRepository(CONNECTION);
         CATEGORY_SERVICE=new CategoryService(CATEGORY_REPOSITORY);
         PRODUCT_REPOSITORY=new ProductRepository(CONNECTION);
-        PROUDUCT_SERVICE=new ProuductService(PRODUCT_REPOSITORY);
+        PROUDUCT_SERVICE=new ProductService(PRODUCT_REPOSITORY);
 
     }
     public static UserService getUserService(){
@@ -42,7 +42,7 @@ public class ApplicationContex {
         return BRAND_SERVICE;
     }
     public static CategoryService getCategoryService(){return CATEGORY_SERVICE;}
-    public static ProuductService getProuductService(){return PROUDUCT_SERVICE;}
+    public static ProductService getProuductService(){return PROUDUCT_SERVICE;}
 
 
 
