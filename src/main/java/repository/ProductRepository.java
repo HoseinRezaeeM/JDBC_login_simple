@@ -74,7 +74,7 @@ public class ProductRepository {
     }
 
     public int delete(int idProduct) throws SQLException {
-        String sql = "DELETE FROM product where idbrand=?";
+        String sql = "DELETE FROM product where idproduct=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, idProduct);
         int result = preparedStatement.executeUpdate();
