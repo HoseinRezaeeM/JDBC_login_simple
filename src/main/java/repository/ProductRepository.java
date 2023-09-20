@@ -2,6 +2,7 @@ package repository;
 
 import models.Brand;
 import models.Category;
+import models.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,7 +39,7 @@ public class ProductRepository {
                     );
             i++;
         }
-        System.out.println(Arrays.toString(brands));
+        System.out.println(Arrays.toString(brands)+"\n");
 
         while (resultSet1.next()){
             categories[i]=new Category(
@@ -50,4 +51,35 @@ public class ProductRepository {
         }
         System.out.println(Arrays.toString(categories));
     }
+    public int save(Product product) throws SQLException {
+        String sql = "INSERT INTO product(name,createdate,idcategory,idbrand) VALUES (?,?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, product.getName());
+        preparedStatement.setString(2, product.getCreateDate());
+        preparedStatement.setInt(3, product.getIdBrand());
+        preparedStatement.setInt(4,product.getIdCategory());
+        int result = preparedStatement.executeUpdate();
+        return result;
+    }
+
+    public int update(String name, String createDate, int idCategory, int idBrand) throws SQLException {
+        String sql = "UPDATE product SET name=?,createdate=?,idcategory=?,idbrand=? WHERE idproduct=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, createDate);
+        preparedStatement.setInt(3, idCategory);
+        preparedStatement.setInt(4, idBrand);
+        int result = preparedStatement.executeUpdate();
+        return result;
+    }
+
+    public int delete(int idProduct) throws SQLException {
+        String sql = "DELETE FROM product where idbrand=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idProduct);
+        int result = preparedStatement.executeUpdate();
+        return result;
+
+    }
+
 }
