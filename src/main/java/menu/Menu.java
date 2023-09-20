@@ -1,9 +1,6 @@
 package menu;
 
-import models.Brand;
-import models.Category;
-import models.Shareholder;
-import models.User;
+import models.*;
 import service.*;
 import utility.ApplicationContex;
 import utility.Validation;
@@ -15,9 +12,9 @@ public class Menu {
     private final Scanner sc = new Scanner(System.in);
     private final UserService userService = ApplicationContex.getUserService();
     private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
-    private final BrandService brandService=ApplicationContex.getBrandService();
-    private final CategoryService categoryService=ApplicationContex.getCategoryService();
-    private final ProuductService prouductService=ApplicationContex.getProuductService();
+    private final BrandService brandService = ApplicationContex.getBrandService();
+    private final CategoryService categoryService = ApplicationContex.getCategoryService();
+    private final ProductService productService = ApplicationContex.getProuductService();
 
     public void firstMenu() throws SQLException {
         System.out.println("\n---------Welcome to MyApplication---------\n");
@@ -131,7 +128,7 @@ public class Menu {
         String phoneNumber = null;
         boolean isTrue = true;
         while (isTrue) {
-            phoneNumber=sc.next();
+            phoneNumber = sc.next();
             if (Validation.validatePhoneNumber(phoneNumber)) {
                 isTrue = false;
             } else {
@@ -142,7 +139,7 @@ public class Menu {
         String nationalCode = null;
         boolean isTrue1 = true;
         while (isTrue1) {
-            nationalCode=sc.next();
+            nationalCode = sc.next();
             if (Validation.validationNationalCode(nationalCode)) {
                 isTrue1 = false;
             } else {
@@ -153,15 +150,17 @@ public class Menu {
         shareholderService.register(shareholder);
 
     }
+
     public void updateShareholder() throws SQLException {
         System.out.println("Enter your ID Shareholder :");
-        int idShareholder =sc.nextInt();
+        int idShareholder = sc.nextInt();
         shareholderService.update(idShareholder);
 
     }
-    public void deleteShareholder() throws SQLException{
+
+    public void deleteShareholder() throws SQLException {
         System.out.println("Enter your IdShareholder :");
-        int idShareholder=sc.nextInt();
+        int idShareholder = sc.nextInt();
         shareholderService.delete(idShareholder);
     }
 
@@ -176,7 +175,7 @@ public class Menu {
         sc.nextLine();
         switch (select) {
             case 1:
-               registerBrand();
+                registerBrand();
             case 2:
                 addShareholderBrand();
             case 3:
@@ -196,7 +195,7 @@ public class Menu {
         String website = null;
         boolean isTrue = true;
         while (isTrue) {
-            website=sc.next();
+            website = sc.next();
             if (Validation.validationWebsite(website)) {
                 isTrue = false;
             } else {
@@ -204,29 +203,32 @@ public class Menu {
             }
         }
         System.out.println("Enter your descripton :");
-        String description=sc.next();
-        Brand brand=new Brand(null,name,website,description);
+        String description = sc.next();
+        Brand brand = new Brand(null, name, website, description);
         brandService.register(brand);
 
 
     }
+
     public void addShareholderBrand() throws SQLException {
         System.out.println("Enter ID Brand :");
-        int idBrand=sc.nextInt();
+        int idBrand = sc.nextInt();
         System.out.println("Enter ID Shareholder :");
-        int idShareholder=sc.nextInt();
-        brandService.shareholderBranch(idBrand,idShareholder);
+        int idShareholder = sc.nextInt();
+        brandService.shareholderBranch(idBrand, idShareholder);
 
     }
+
     public void updateBrand() throws SQLException {
         System.out.println("Enter your ID Brand :");
-        int idBrand =sc.nextInt();
+        int idBrand = sc.nextInt();
         brandService.update(idBrand);
 
     }
-    public void deleteBrand() throws SQLException{
+
+    public void deleteBrand() throws SQLException {
         System.out.println("Enter your ID Brand :");
-        int idBrand=sc.nextInt();
+        int idBrand = sc.nextInt();
         brandService.delete(idBrand);
     }
 
@@ -255,45 +257,78 @@ public class Menu {
         System.out.println("Enter your name :");
         String name = sc.next();
         System.out.println("Enter your descripton :");
-        String description=sc.next();
-        Category category=new Category(null,name,description);
+        String description = sc.next();
+        Category category = new Category(null, name, description);
         categoryService.register(category);
 
 
     }
+
     public void updateCategory() throws SQLException {
         System.out.println("Enter your ID Category :");
-        int idCategory =sc.nextInt();
+        int idCategory = sc.nextInt();
         categoryService.update(idCategory);
 
     }
-    public void deleteCategory() throws SQLException{
+
+    public void deleteCategory() throws SQLException {
         System.out.println("Enter your ID Category :");
-        int idCategory=sc.nextInt();
+        int idCategory = sc.nextInt();
         categoryService.delete(idCategory);
     }
+
     public void productMenu() throws SQLException {
         System.out.println("1. Show Brand and Category :");
         System.out.println("2. Add Product :");
         System.out.println("3. Edit Product :");
         System.out.println("4. Delete Product :");
         System.out.println("Enter your select :");
-        int select=sc.nextInt();
+        int select = sc.nextInt();
         sc.nextLine();
-        switch(select){
+        switch (select) {
             case 1:
                 show();
             case 2:
+                registerProduct();
             case 3:
+                updateProduct();
             case 4:
+                deleteProduct();
             default:
                 System.out.println("--Error404--");
         }
     }
+
     public void show() throws SQLException {
-        prouductService.loadAll();
+        productService.loadAll();
     }
 
+    public void registerProduct() throws SQLException {
+        System.out.println("Enter name : ");
+        String name = sc.next();
+        System.out.println("Enter CreateDate :");
+        String createDate = sc.next();
+        System.out.println("Enter ID Category :");
+        int idcategory = sc.nextInt();
+        System.out.println("Enter ID Brand :");
+        int idbrand = sc.nextInt();
+        Product product = new Product(null, name, createDate, idcategory, idbrand);
+        productService.register(product);
+
+    }
+
+    public void updateProduct() throws SQLException {
+        System.out.println("Enter your ID Category :");
+        int idProduct = sc.nextInt();
+        productService.update(idProduct);
+
+    }
+
+    public void deleteProduct() throws SQLException {
+        System.out.println("Enter your ID Category :");
+        int idProduct = sc.nextInt();
+        productService.delete(idProduct);
+    }
 
 
 }
