@@ -222,12 +222,17 @@ public class Menu {
     }
 
     public void addShareholderBrand() throws SQLException {
-        System.out.println("Enter ID Brand :");
-        int idBrand = sc.nextInt();
-        System.out.println("Enter ID Shareholder :");
-        int idShareholder = sc.nextInt();
-        brandService.shareholderBranch(idBrand, idShareholder);
+        System.out.println("How many Add data ?");
+        int tedad=sc.nextInt();
+        for (int i = 0; i < tedad; i++) {
 
+
+            System.out.println("Enter ID Brand :");
+            int idBrand = sc.nextInt();
+            System.out.println("Enter ID Shareholder :");
+            int idShareholder = sc.nextInt();
+            brandService.shareholderBranch(idBrand, idShareholder);
+        }
     }
 
     public void updateBrand() throws SQLException {
@@ -320,17 +325,22 @@ public class Menu {
     }
 
     public void registerProduct() throws SQLException {
-        System.out.println("Enter name : ");
-        String name = sc.next();
-        System.out.println("Enter CreateDate :");
-        String createDate = sc.next();
-        System.out.println("Enter ID Category :");
-        int idcategory = sc.nextInt();
-        System.out.println("Enter ID Brand :");
-        int idbrand = sc.nextInt();
-        Product product = new Product(null, name, createDate, idcategory, idbrand);
-        productService.register(product);
+        System.out.println("How many Add Shareholder ?");
+        int tedad=sc.nextInt();
+        for (int i = 0; i < tedad; i++) {
 
+
+            System.out.println("Enter name : ");
+            String name = sc.next();
+            System.out.println("Enter CreateDate :");
+            String createDate = sc.next();
+            System.out.println("Enter ID Category :");
+            int idcategory = sc.nextInt();
+            System.out.println("Enter ID Brand :");
+            int idbrand = sc.nextInt();
+            Product product = new Product(null, name, createDate, idcategory, idbrand);
+            productService.register(product);
+        }
     }
 
     public void updateProduct() throws SQLException {
