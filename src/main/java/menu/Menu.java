@@ -4,10 +4,7 @@ import models.Brand;
 import models.Category;
 import models.Shareholder;
 import models.User;
-import service.BrandService;
-import service.CategoryService;
-import service.ShareholderService;
-import service.UserService;
+import service.*;
 import utility.ApplicationContex;
 import utility.Validation;
 
@@ -20,6 +17,7 @@ public class Menu {
     private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
     private final BrandService brandService=ApplicationContex.getBrandService();
     private final CategoryService categoryService=ApplicationContex.getCategoryService();
+    private final ProuductService prouductService=ApplicationContex.getProuductService();
 
     public void firstMenu() throws SQLException {
         System.out.println("\n---------Welcome to MyApplication---------\n");
@@ -91,8 +89,9 @@ public class Menu {
                     case 2:
                         brandMenu();
                     case 3:
-                        CategoryMenu();
+                        categoryMenu();
                     case 4:
+                        productMenu();
 
                     case 5:
                         System.out.println("----Good Bye---");
@@ -231,7 +230,7 @@ public class Menu {
         brandService.delete(idBrand);
     }
 
-    public void CategoryMenu() throws SQLException {
+    public void categoryMenu() throws SQLException {
         System.out.println("---Category---");
         System.out.println("1. Add Category Information : ");
         System.out.println("2. Edit Category Information :");
@@ -273,6 +272,28 @@ public class Menu {
         int idCategory=sc.nextInt();
         categoryService.delete(idCategory);
     }
+    public void productMenu() throws SQLException {
+        System.out.println("1. Show Brand and Category :");
+        System.out.println("2. Add Product :");
+        System.out.println("3. Edit Product :");
+        System.out.println("4. Delete Product :");
+        System.out.println("Enter your select :");
+        int select=sc.nextInt();
+        sc.nextLine();
+        switch(select){
+            case 1:
+                show();
+            case 2:
+            case 3:
+            case 4:
+            default:
+                System.out.println("--Error404--");
+        }
+    }
+    public void show() throws SQLException {
+        prouductService.loadAll();
+    }
+
 
 
 }
