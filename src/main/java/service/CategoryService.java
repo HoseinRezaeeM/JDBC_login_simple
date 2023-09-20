@@ -24,9 +24,9 @@ public class CategoryService {
     }
 
     public void update(int idCategory) throws SQLException {
-        System.out.println("Enter name:");
+        System.out.println("Enter new name:");
         String name = scanner.next();
-        System.out.println("Enter description:");
+        System.out.println("Enter new description:");
         String desccription = scanner.next();
         int result = categoryRepository.update(name, desccription, idCategory);
         if (result != 0) {
