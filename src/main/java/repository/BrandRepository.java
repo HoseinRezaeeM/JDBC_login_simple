@@ -17,9 +17,9 @@ public class BrandRepository {
     public int save(Brand brand) throws SQLException {
         String sql = "INSERT INTO brand(name, website, description) VALUES (?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, "name");
-        preparedStatement.setString(2, "website");
-        preparedStatement.setString(3, "description");
+        preparedStatement.setString(1, brand.getName());
+        preparedStatement.setString(2, brand.getWebsite());
+        preparedStatement.setString(3, brand.getDescription());
         int result = preparedStatement.executeUpdate();
         return result;
     }

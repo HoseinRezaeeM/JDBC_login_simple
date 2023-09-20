@@ -18,9 +18,9 @@ public class ShareholderRepository {
     public int save(Shareholder shareholder) throws SQLException {
         String sql = "INSERT INTO shareholder(name, phonenumber, nationacode) VALUES (?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, "name");
-        preparedStatement.setString(2, "phoneNumber");
-        preparedStatement.setString(3, "nationalCode");
+        preparedStatement.setString(1, shareholder.getName());
+        preparedStatement.setString(2, shareholder.getPhoneNumber());
+        preparedStatement.setString(3, shareholder.getNationalCode());
         int result = preparedStatement.executeUpdate();
         return result;
     }

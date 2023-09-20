@@ -16,8 +16,8 @@ public class CategoryRepository {
     public int save(Category category) throws SQLException {
         String sql="INSERT INTO category(name, description) VALUES (?,?)";
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setString(1,"name");
-        preparedStatement.setString(2,"description");
+        preparedStatement.setString(1, category.getName());
+        preparedStatement.setString(2, category.getDescription());
         int result =preparedStatement.executeUpdate();
         return result;
     }
