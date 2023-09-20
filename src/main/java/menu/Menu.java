@@ -1,7 +1,9 @@
 package menu;
 
+import models.Brand;
 import models.Shareholder;
 import models.User;
+import service.BrandService;
 import service.ShareholderService;
 import service.UserService;
 import utility.ApplicationContex;
@@ -14,6 +16,7 @@ public class Menu {
     private final Scanner sc = new Scanner(System.in);
     private final UserService userService = ApplicationContex.getUserService();
     private final ShareholderService shareholderService = ApplicationContex.getShareholderService();
+    private final BrandService brandService=ApplicationContex.getBrandService();
 
     public void firstMenu() throws SQLException {
         System.out.println("\n---------Welcome to MyApplication---------\n");
@@ -24,7 +27,7 @@ public class Menu {
         int select = sc.nextInt();
         sc.nextLine();
         switch (select) {
-            case 1 -> System.out.println("");
+            case 1 -> login();
             case 2 -> registerUser();
             case 3 -> System.out.println("exit");
             default -> System.out.println("---Eror404---");
@@ -83,9 +86,11 @@ public class Menu {
                     case 1:
                         shareholderMenu();
                     case 2:
-
+                        brandMenu();
                     case 3:
+
                     case 4:
+
                     case 5:
                         System.out.println("----Good Bye---");
                     default:
@@ -124,6 +129,7 @@ public class Menu {
         String phoneNumber = null;
         boolean isTrue = true;
         while (isTrue) {
+            phoneNumber=sc.next();
             if (Validation.validatePhoneNumber(phoneNumber)) {
                 isTrue = false;
             } else {
@@ -134,6 +140,7 @@ public class Menu {
         String nationalCode = null;
         boolean isTrue1 = true;
         while (isTrue1) {
+            nationalCode=sc.next();
             if (Validation.validationNationalCode(nationalCode)) {
                 isTrue1 = false;
             } else {
@@ -154,6 +161,60 @@ public class Menu {
         System.out.println("Enter your IdShareholder :");
         int idShareholder=sc.nextInt();
         shareholderService.delete(idShareholder);
+    }
+
+    public void brandMenu() throws SQLException {
+        System.out.println("---Brandr---");
+        System.out.println("1. Add Barnd Information : ");
+        System.out.println("2. Edit Brand Information :");
+        System.out.println("3. Delete Brand Information :");
+        System.out.println("Enter your Select :");
+        int select = sc.nextInt();
+        sc.nextLine();
+        switch (select) {
+            case 1:
+               registerBrand();
+            case 2:
+                updateBrand();
+            case 3:
+                deleteBrand();
+            default:
+                System.out.println("--Error--");
+        }
+
+    }
+
+    public void registerBrand() throws SQLException {
+        System.out.println("Enter your name :");
+        String name = sc.next();
+        System.out.println("Enter your website :");
+        String website = null;
+        boolean isTrue = true;
+        while (isTrue) {
+            website=sc.next();
+            if (Validation.validationWebsite(website)) {
+                isTrue = false;
+            } else {
+                System.out.println("please enter a valid phoneNumber!!");
+            }
+        }
+        System.out.println("Enter your descripton :");
+        String description=sc.next();
+        Brand brand=new Brand(null,name,website,description);
+        brandService.register(brand);
+
+
+    }
+    public void updateBrand() throws SQLException {
+        System.out.println("Enter your ID Brand :");
+        int idBrand =sc.nextInt();
+        brandService.update(idBrand);
+
+    }
+    public void deleteBrand() throws SQLException{
+        System.out.println("Enter your ID Brand :");
+        int idBrand=sc.nextInt();
+        brandService.delete(idBrand);
     }
 
 

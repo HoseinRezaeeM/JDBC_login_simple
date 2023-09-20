@@ -1,42 +1,39 @@
 package repository;
 
-import models.Brand;
+import models.Category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class BrandRepository {
+public class CategoryRepository {
 
     private final Connection connection;
 
-    public BrandRepository(Connection connection) {
+    public CategoryRepository(Connection connection) {
         this.connection = connection;
     }
-    public int save(Brand brand) throws SQLException {
-        String sql="INSERT INTO brand(name, website, description) VALUES (?,?,?)";
+    public int save(Category category) throws SQLException {
+        String sql="INSERT INTO category(name, description) VALUES (?,?)";
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
         preparedStatement.setString(1,"name");
-        preparedStatement.setString(2,"website");
-        preparedStatement.setString(3,"description");
+        preparedStatement.setString(2,"description");
         int result =preparedStatement.executeUpdate();
         return result;
     }
-
-    public int update(String name,String website,String description,int idBrand) throws SQLException {
-        String sql="UPDATE brand SET name=?,website=?,description=? WHERE idbrand=?";
+    public int update(String name,String description,int idCategory) throws SQLException {
+        String sql="UPDATE category SET name=?,description=? WHERE idcategory=?";
         PreparedStatement preparedStatement=connection.prepareStatement(sql);
         preparedStatement.setString(1,name);
-        preparedStatement.setString(2,website);
-        preparedStatement.setString(3,description);
-        preparedStatement.setInt(4,idBrand);
+        preparedStatement.setString(2,description);
+        preparedStatement.setInt(3,idCategory);
         int result =preparedStatement.executeUpdate();
         return result;
     }
-    public int delete(int idBrand)throws SQLException {
+    public int delete(int idCategory)throws SQLException {
         String sql = "DELETE FROM brand where idbrand=?";
         PreparedStatement preparedStatement=connection.prepareStatement(sql);
-        preparedStatement.setInt(1,idBrand);
+        preparedStatement.setInt(1,idCategory);
         int result =preparedStatement.executeUpdate();
         return result;
 
