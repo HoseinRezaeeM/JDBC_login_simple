@@ -265,13 +265,18 @@ public class Menu {
     }
 
     public void registerCategory() throws SQLException {
-        System.out.println("Enter your name :");
-        String name = sc.next();
-        System.out.println("Enter your descripton :");
-        String description = sc.next();
-        Category category = new Category(null, name, description);
-        categoryService.register(category);
+        System.out.println("How many Add Category ?");
+        int tedad=sc.nextInt();
+        for (int i = 0; i < tedad; i++) {
 
+
+            System.out.println("Enter your name :");
+            String name = sc.next();
+            System.out.println("Enter your descripton :");
+            String description = sc.next();
+            Category category = new Category(null, name, description);
+            categoryService.register(category);
+        }
 
     }
 
