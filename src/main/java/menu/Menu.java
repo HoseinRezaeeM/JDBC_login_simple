@@ -169,8 +169,9 @@ public class Menu {
     public void brandMenu() throws SQLException {
         System.out.println("---Brand---");
         System.out.println("1. Add Barnd Information : ");
-        System.out.println("2. Edit Brand Information :");
-        System.out.println("3. Delete Brand Information :");
+        System.out.println("2. Add Shareholder Brand :");
+        System.out.println("3. Edit Brand Information :");
+        System.out.println("4. Delete Brand Information :");
         System.out.println("Enter your Select :");
         int select = sc.nextInt();
         sc.nextLine();
@@ -178,8 +179,10 @@ public class Menu {
             case 1:
                registerBrand();
             case 2:
-                updateBrand();
+                addShareholderBrand();
             case 3:
+                updateBrand();
+            case 4:
                 deleteBrand();
             default:
                 System.out.println("--Error--");
@@ -206,6 +209,14 @@ public class Menu {
         Brand brand=new Brand(null,name,website,description);
         brandService.register(brand);
 
+
+    }
+    public void addShareholderBrand() throws SQLException {
+        System.out.println("Enter ID Brand :");
+        int idBrand=sc.nextInt();
+        System.out.println("Enter ID Shareholder :");
+        int idShareholder=sc.nextInt();
+        brandService.shareholderBranch(idBrand,idShareholder);
 
     }
     public void updateBrand() throws SQLException {
