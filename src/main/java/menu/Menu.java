@@ -195,25 +195,30 @@ public class Menu {
     }
 
     public void registerBrand() throws SQLException {
-        System.out.println("Enter your name :");
-        String name = sc.next();
-        System.out.println("Enter your website :");
-        String website = null;
-        boolean isTrue = true;
-        while (isTrue) {
-            website = sc.next();
-            if (Validation.validationWebsite(website)) {
-                isTrue = false;
-            } else {
-                System.out.println("please enter a valid phoneNumber!!");
+        System.out.println("How many Add Brand ?");
+        int tedad=sc.nextInt();
+        for (int i = 0; i < tedad; i++) {
+
+
+            System.out.println("Enter your name :");
+            String name = sc.next();
+            System.out.println("Enter your website :");
+            String website = null;
+            boolean isTrue = true;
+            while (isTrue) {
+                website = sc.next();
+                if (Validation.validationWebsite(website)) {
+                    isTrue = false;
+                } else {
+                    System.out.println("please enter a valid phoneNumber!!");
+                }
             }
+            System.out.println("Enter your descripton :");
+            String description = sc.next();
+            Brand brand = new Brand(null, name, website, description);
+            brandService.register(brand);
+
         }
-        System.out.println("Enter your descripton :");
-        String description = sc.next();
-        Brand brand = new Brand(null, name, website, description);
-        brandService.register(brand);
-
-
     }
 
     public void addShareholderBrand() throws SQLException {
