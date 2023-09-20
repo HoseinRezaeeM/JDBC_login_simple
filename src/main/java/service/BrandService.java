@@ -38,5 +38,13 @@ public class BrandService {
             System.out.println("--Error404--");
         }
     }
+    public void delete(int idBrand) throws SQLException {
+        int result =brandRepository.delete(idBrand);
+        if (result != 0) {
+            System.out.println("successfully deleted from database");
+        } else {
+            System.out.println("---Eror404--");
+        }
+    }
 
 }
