@@ -122,33 +122,39 @@ public class Menu {
     }
 
     public void registerShareholder() throws SQLException {
-        System.out.println("Enter your name :");
-        String name = sc.next();
-        System.out.println("Enter your phoneNumber :");
-        String phoneNumber = null;
-        boolean isTrue = true;
-        while (isTrue) {
-            phoneNumber = sc.next();
-            if (Validation.validatePhoneNumber(phoneNumber)) {
-                isTrue = false;
-            } else {
-                System.out.println("please enter a valid phoneNumber!!");
-            }
-        }
-        System.out.println("Enter your nationalCode :");
-        String nationalCode = null;
-        boolean isTrue1 = true;
-        while (isTrue1) {
-            nationalCode = sc.next();
-            if (Validation.validationNationalCode(nationalCode)) {
-                isTrue1 = false;
-            } else {
-                System.out.println("please enter a valid nationalCode!!");
-            }
-        }
-        Shareholder shareholder = new Shareholder(null, name, phoneNumber, nationalCode);
-        shareholderService.register(shareholder);
+        System.out.println("How many Add Shareholder ?");
+        int tedad = sc.nextInt();
 
+        for (int i = 1; i <= tedad; i++) {
+
+            System.out.println("Enter your name :");
+            String name = sc.next();
+            System.out.println("Enter your phoneNumber :");
+            String phoneNumber = null;
+            boolean isTrue = true;
+            while (isTrue) {
+                phoneNumber = sc.next();
+                if (Validation.validatePhoneNumber(phoneNumber)) {
+                    isTrue = false;
+                } else {
+                    System.out.println("please enter a valid phoneNumber!!");
+                }
+            }
+            System.out.println("Enter your nationalCode :");
+            String nationalCode = null;
+            boolean isTrue1 = true;
+            while (isTrue1) {
+                nationalCode = sc.next();
+                if (Validation.validationNationalCode(nationalCode)) {
+                    isTrue1 = false;
+                } else {
+                    System.out.println("please enter a valid nationalCode!!");
+                }
+            }
+            Shareholder shareholder = new Shareholder(null, name, phoneNumber, nationalCode);
+            shareholderService.register(shareholder);
+
+        }
     }
 
     public void updateShareholder() throws SQLException {
