@@ -51,6 +51,7 @@ public class Menu {
         String password = null;
         boolean flag = true;
         while (flag) {
+            password=sc.next();
             if (Validation.validationPassword(password))
                 flag = false;
             else
