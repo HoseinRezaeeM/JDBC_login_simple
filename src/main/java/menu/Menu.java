@@ -17,10 +17,12 @@ public class Menu {
     private final ProductService productService = ApplicationContex.getProuductService();
 
     public void firstMenu() throws SQLException {
-        System.out.println("\n---------Welcome to MyApplication---------\n");
+        System.out.println("\n*--------------------------------------------*");
+        System.out.println("|       Welcome to MyApplication             |");
+        System.out.println("*--------------------------------------------*\n");
         System.out.println("1- Sign in");
         System.out.println("2- Sign up");
-        System.out.println("3- Exit");
+        System.out.println("3- Exit\n");
         System.out.println("Enter your select:");
         int select = sc.nextInt();
         sc.nextLine();
@@ -68,17 +70,17 @@ public class Menu {
         System.out.println("Enter Password : ");
         String password = sc.next();
         User user = userService.login(userName);
-        if (user == null && !user.getPassword().equals(password)) {
+        if (user == null || !user.getPassword().equals(password)) {
             System.out.println("you enter a username and password incorrect!!!");
         } else {
             boolean isBolean = true;
             while (isBolean) {
-                System.out.println("-------Welcome------");
+                System.out.println("---------** Menu **-------\n");
                 System.out.println("1. Shareholder ");
                 System.out.println("2. Brand ");
                 System.out.println("3. Category ");
                 System.out.println("4. Product ");
-                System.out.println("5. Exit ");
+                System.out.println("5. Exit \n");
                 System.out.println("Enter your select :");
                 int select = sc.nextInt();
                 switch (select) {
@@ -93,6 +95,7 @@ public class Menu {
 
                     case 5:
                         System.out.println("----Good Bye---");
+                        break;
                     default:
                         System.out.println("-----Error404----");
 
@@ -102,7 +105,7 @@ public class Menu {
     }
 
     public void shareholderMenu() throws SQLException {
-        System.out.println("---Shareholder---");
+        System.out.println("---------** Shareholder **----------\n");
         System.out.println("1. Add Shareholer Information : ");
         System.out.println("2. Edit Shareholder Information :");
         System.out.println("3. Delete Shareholder Information :");
@@ -116,6 +119,7 @@ public class Menu {
                 updateShareholder();
             case 3:
                 deleteShareholder();
+                break;
             default:
                 System.out.println("--Error--");
         }
@@ -172,7 +176,7 @@ public class Menu {
     }
 
     public void brandMenu() throws SQLException {
-        System.out.println("---Brand---");
+        System.out.println("----------** Brand **---------\n");
         System.out.println("1. Add Barnd Information : ");
         System.out.println("2. Add Shareholder Brand :");
         System.out.println("3. Edit Brand Information :");
@@ -189,6 +193,7 @@ public class Menu {
                 updateBrand();
             case 4:
                 deleteBrand();
+                break;
             default:
                 System.out.println("--Error--");
         }
@@ -199,8 +204,6 @@ public class Menu {
         System.out.println("How many Add Brand ?");
         int tedad=sc.nextInt();
         for (int i = 0; i < tedad; i++) {
-
-
             System.out.println("Enter your name :");
             String name = sc.next();
             System.out.println("Enter your website :");
@@ -216,10 +219,11 @@ public class Menu {
             }
             System.out.println("Enter your descripton :");
             String description = sc.next();
+            sc.nextLine();
             Brand brand = new Brand(null, name, website, description);
             brandService.register(brand);
-
         }
+
     }
 
     public void addShareholderBrand() throws SQLException {
@@ -250,7 +254,7 @@ public class Menu {
     }
 
     public void categoryMenu() throws SQLException {
-        System.out.println("---Category---");
+        System.out.println("---------** Category **---------\n");
         System.out.println("1. Add Category Information : ");
         System.out.println("2. Edit Category Information :");
         System.out.println("3. Delete Category Information :");
@@ -264,6 +268,7 @@ public class Menu {
                 updateCategory();
             case 3:
                 deleteCategory();
+                break;
             default:
                 System.out.println("--Error--");
         }
@@ -276,9 +281,9 @@ public class Menu {
         for (int i = 0; i < tedad; i++) {
 
 
-            System.out.println("Enter your name :");
+            System.out.println("Enter Category name :");
             String name = sc.next();
-            System.out.println("Enter your descripton :");
+            System.out.println("Enter Category descripton :");
             String description = sc.next();
             Category category = new Category(null, name, description);
             categoryService.register(category);
@@ -300,6 +305,7 @@ public class Menu {
     }
 
     public void productMenu() throws SQLException {
+        System.out.println("----------** Product **---------\n");
         System.out.println("1. Show Brand and Category :");
         System.out.println("2. Add Product :");
         System.out.println("3. Edit Product :");
@@ -316,6 +322,7 @@ public class Menu {
                 updateProduct();
             case 4:
                 deleteProduct();
+                break;
             default:
                 System.out.println("--Error404--");
         }
@@ -326,11 +333,9 @@ public class Menu {
     }
 
     public void registerProduct() throws SQLException {
-        System.out.println("How many Add Shareholder ?");
+        System.out.println("How many Add Product ?");
         int tedad=sc.nextInt();
         for (int i = 0; i < tedad; i++) {
-
-
             System.out.println("Enter name : ");
             String name = sc.next();
             System.out.println("Enter CreateDate :");
