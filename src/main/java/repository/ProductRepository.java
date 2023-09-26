@@ -20,15 +20,16 @@ public class ProductRepository {
 
     public void loadAll() throws SQLException {
         String sqlBrand ="SELECT * FROM brand";
-        String sqlCategory="SELECT * FROM category";
         PreparedStatement preparedStatement=connection.prepareStatement(sqlBrand);
+        String sqlCategory="SELECT * FROM Category";
         PreparedStatement preparedStatement1=connection.prepareStatement(sqlCategory);
         ResultSet resultSet =preparedStatement.executeQuery();
         ResultSet resultSet1=preparedStatement1.executeQuery();
 
-        Brand[] brands=new Brand[10];
-        Category[] categories=new Category[10];
+        Brand[] brands=new Brand[12];
+        Category[] categories=new Category[12];
         int i=0;
+        int j=0;
 
         while (resultSet.next()){
             brands[i]=new Brand(
@@ -42,22 +43,22 @@ public class ProductRepository {
         System.out.println(Arrays.toString(brands)+"\n");
 
         while (resultSet1.next()){
-            categories[i]=new Category(
+            categories[j]=new Category(
                     resultSet1.getInt(1),
                     resultSet1.getString(2),
                     resultSet1.getString(3)
             );
-            i++;
+            j++;
         }
-        System.out.println(Arrays.toString(categories));
+        System.out.println(Arrays.toString(categories)+"\n");
     }
     public int save(Product product) throws SQLException {
         String sql = "INSERT INTO product(name,createdate,idcategory,idbrand) VALUES (?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, product.getName());
         preparedStatement.setString(2, product.getCreateDate());
-        preparedStatement.setInt(3, product.getIdBrand());
-        preparedStatement.setInt(4,product.getIdCategory());
+        preparedStatement.setInt(3, product.getIdCategory());
+        preparedStatement.setInt(4,product.getIdBrand());
         int result = preparedStatement.executeUpdate();
         return result;
     }
