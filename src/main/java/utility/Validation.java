@@ -24,7 +24,7 @@ public class Validation {
         return nationalCode.matches(pattern.pattern());
     }
     public static boolean validationWebsite(String website){
-        Pattern pattern=Pattern.compile("(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$/");
+        Pattern pattern=Pattern.compile("/^((ftp|http|https):\\/\\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\w+(&[a-zA-Z0-9_]+=\\w+)*)?\\/?$/gm");
         return website.matches(pattern.pattern());
     }
 }
