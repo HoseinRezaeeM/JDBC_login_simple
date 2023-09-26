@@ -24,7 +24,7 @@ public class Validation {
         return nationalCode.matches(pattern.pattern());
     }
     public static boolean validationWebsite(String website){
-        Pattern pattern=Pattern.compile("^(www\\\\.)?([a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,}(\\\\/[^\\s]*)?$");
+        Pattern pattern=Pattern.compile("^(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+(\\/[^\\s]*)?$");
         return website.matches(pattern.pattern());
     }
 }
