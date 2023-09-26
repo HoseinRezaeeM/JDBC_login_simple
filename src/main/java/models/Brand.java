@@ -47,11 +47,10 @@ public class Brand {
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "idBrand=" + idBrand +
-                ", name='" + name + '\'' +
-                ", website='" + website + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Brand : " +
+                "   idBrand =" + idBrand +
+                ",     name = " + name +
+                ",         website = " + website+
+                ",               description = " + description +"\n";
     }
 }
