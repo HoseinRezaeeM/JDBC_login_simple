@@ -1,4 +1,4 @@
-package menu;
+package utility;
 
 import models.*;
 import service.*;
