@@ -38,7 +38,7 @@ public class ProductService {
         int idCategory = scanner.nextInt();
         System.out.println("Enter idBrand :");
         int idBrand = scanner.nextInt();
-        int result = prouductRepository.update(name, createDate, idCategory, idBrand);
+        int result = prouductRepository.update(name, createDate, idCategory, idBrand,idProduct);
         if (result != 0) {
             System.out.println("successfully deleted from database");
         } else {

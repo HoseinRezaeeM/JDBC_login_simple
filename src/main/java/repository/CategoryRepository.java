@@ -31,7 +31,7 @@ public class CategoryRepository {
         return result;
     }
     public int delete(int idCategory)throws SQLException {
-        String sql = "DELETE FROM brand where idbrand=?";
+        String sql = "DELETE FROM category where idCategory=?";
         PreparedStatement preparedStatement=connection.prepareStatement(sql);
         preparedStatement.setInt(1,idCategory);
         int result =preparedStatement.executeUpdate();

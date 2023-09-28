@@ -63,13 +63,14 @@ public class ProductRepository {
         return result;
     }
 
-    public int update(String name, String createDate, int idCategory, int idBrand) throws SQLException {
+    public int update(String name, String createDate, int idCategory, int idBrand,int idProduct) throws SQLException {
         String sql = "UPDATE product SET name=?,createdate=?,idcategory=?,idbrand=? WHERE idproduct=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, createDate);
         preparedStatement.setInt(3, idCategory);
         preparedStatement.setInt(4, idBrand);
+        preparedStatement.setInt(5,idProduct);
         int result = preparedStatement.executeUpdate();
         return result;
     }
